@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <enterprise-beans>
+        <entity>
+            <description>jdbc:mysql://localhost:3306/project_db [root on Default schema]</description>
+            <display-name>LogintablebeanEB</display-name>
+            <ejb-name>LogintablebeanBean</ejb-name>
+            <local-home>entitypackages.LogintablebeanLocalHome</local-home>
+            <local>entitypackages.LogintablebeanLocal</local>
+            <ejb-class>entitypackages.LogintablebeanBean</ejb-class>
+            <persistence-type>Container</persistence-type>
+            <prim-key-class>java.lang.String</prim-key-class>
+            <reentrant>false</reentrant>
+            <abstract-schema-name>Logintablebean</abstract-schema-name>
+            <cmp-field>
+                <field-name>email</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>name</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>password</field-name>
+            </cmp-field>
+            <primkey-field>email</primkey-field>
+            <query>
+                <query-method>
+                    <method-name>findByEmail</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(l) FROM Logintablebean AS l WHERE l.email = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByName</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(l) FROM Logintablebean AS l WHERE l.name = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByPassword</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(l) FROM Logintablebean AS l WHERE l.password = ?1</ejb-ql>
+            </query>
+            </entity>
+        </enterprise-beans>
+    <assembly-descriptor>
+        <container-transaction>
+            <method>
+                <ejb-name>LogintablebeanBean</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+        </assembly-descriptor>
+    </ejb-jar>

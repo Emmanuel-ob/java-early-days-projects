@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+  <enterprise-beans>
+        <session>
+            <display-name>EmployeeLogicSB</display-name>
+            <ejb-name>EmployeeLogicBean</ejb-name>
+            <local-home>sessionpackages.EmployeeLogicLocalHome</local-home>
+            <local>sessionpackages.EmployeeLogicLocal</local>
+            <ejb-class>sessionpackages.EmployeeLogicBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+            <ejb-local-ref>
+                <ejb-ref-name>EmployeerecordsBean</ejb-ref-name>
+                <ejb-ref-type>Entity</ejb-ref-type>
+                <local-home>entitypackages.EmployeerecordsLocalHome</local-home>
+                <local>entitypackages.EmployeerecordsLocal</local>
+                <ejb-link>EmployeerecordsBean</ejb-link>
+            </ejb-local-ref>
+            </session>
+        <entity>
+            <description>jdbc:mysql://localhost:3306/employeerecord_db [root on Default schema]</description>
+            <display-name>EmployeerecordsEB</display-name>
+            <ejb-name>EmployeerecordsBean</ejb-name>
+            <local-home>entitypackages.EmployeerecordsLocalHome</local-home>
+            <local>entitypackages.EmployeerecordsLocal</local>
+            <ejb-class>entitypackages.EmployeerecordsBean</ejb-class>
+            <persistence-type>Container</persistence-type>
+            <prim-key-class>java.lang.Integer</prim-key-class>
+            <reentrant>false</reentrant>
+            <abstract-schema-name>Employeerecords</abstract-schema-name>
+            <cmp-field>
+                <field-name>staffId</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>surName</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>otherNames</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>sex</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>age</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>email</field-name>
+            </cmp-field>
+            <cmp-field>
+                <field-name>department</field-name>
+            </cmp-field>
+            <primkey-field>staffId</primkey-field>
+            <query>
+                <query-method>
+                    <method-name>findByStaffId</method-name>
+                    <method-params>
+                        <method-param>java.lang.Integer</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.staffId = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findBySurName</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.surName = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByOtherNames</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.otherNames = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findBySex</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.sex = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByAge</method-name>
+                    <method-params>
+                        <method-param>int</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.age = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByEmail</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.email = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByDepartment</method-name>
+                    <method-params>
+                        <method-param>java.lang.String</method-param>
+                    </method-params>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(e) FROM Employeerecords AS e WHERE e.department = ?1</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByAll</method-name>
+                    <method-params/>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(o) 
+FROM Employeerecords o</ejb-ql>
+            </query>
+            <query>
+                <query-method>
+                    <method-name>findByAll</method-name>
+                    <method-params/>
+                </query-method>
+                <ejb-ql>SELECT OBJECT(o) 
+FROM Employeerecords o</ejb-ql>
+            </query>
+            </entity>
+        </enterprise-beans>
+    <assembly-descriptor>
+        <container-transaction>
+            <method>
+                <ejb-name>EmployeerecordsBean</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+        <container-transaction>
+            <method>
+                <ejb-name>EmployeeLogicBean</ejb-name>
+                <method-name>*</method-name>
+            </method>
+            <trans-attribute>Required</trans-attribute>
+        </container-transaction>
+        </assembly-descriptor>
+    </ejb-jar>
